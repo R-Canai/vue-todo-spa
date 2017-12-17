@@ -30,12 +30,6 @@ export const mutations = {
     task.title = value
   },
 
-  toggleAll (state, { done }) {
-    state.tasks.forEach((task) => {
-      task.done = done
-    })
-  },
-
   clearCompleted (state) {
     state.tasks = state.tasks.filter(task => !task.done)
   }
