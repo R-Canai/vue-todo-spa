@@ -2,9 +2,10 @@
 
 > A Vue.js project
 
-# CSS Framework
+## CSS Framework
 
-> vuetify
+ - vuetify
+ - material icons
 
 ## Build Setup
 
