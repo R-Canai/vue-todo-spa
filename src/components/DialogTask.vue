@@ -6,13 +6,13 @@
        <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12 sm12 md12>
-                <v-text-field label="Title" v-model="taskTitle" required></v-text-field>
+                <v-text-field label="Title" v-model="task.title" required></v-text-field>
               </v-flex>
               <v-flex xs12 sm12 md12>
                 <v-text-field
                   name="input-7-1"
                   label="Description"
-                  v-model="taskDescription"
+                  v-model="task.description"
                   multi-line
                 ></v-text-field>
               </v-flex>
@@ -34,8 +34,10 @@ export default {
   data () {
     return {
       dialog: false,
-      taskTitle: '',
-      taskDescription: ''
+      task: {
+        title: '',
+        description: ''
+      }
     }
   },
   methods: {
@@ -43,13 +45,14 @@ export default {
       this.dialog = false
     },
     addTask () {
-      const title = this.taskTitle
-      const description = this.taskDescription
-      if (title.trim()) {
-        this.$store.commit('addTask', { title, description })
+      const newTask = this.task
+      if (newTask.title.trim()) {
+        this.$store.dispatch('addTask', { newTask })
       }
-      this.taskTitle = ''
-      this.taskDescription = ''
+      this.task = {
+        title: '',
+        description: ''
+      }
       this.closeDialog()
     }
   }

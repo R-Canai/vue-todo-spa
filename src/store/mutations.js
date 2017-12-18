@@ -1,36 +1,24 @@
-export const STORAGE_KEY = 'vu-todo-spa'
-
-// for testing
-if (navigator.userAgent.indexOf('PhantomJS') > -1) {
-  window.localStorage.clear()
+export const addTask = (state, { newTask }) => {
+  state.tasks.push({
+    title: newTask.title,
+    description: newTask.description,
+    done: false
+  })
 }
 
-export const state = {
-  tasks: JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]')
+export const toggleTask = (state, { task }) => {
+  task.done = !task.done
 }
 
-export const mutations = {
-  addTask (state, { title, description }) {
-    state.tasks.push({
-      title,
-      description,
-      done: false
-    })
-  },
+export const deleteTask = (state, { task }) => {
+  state.tasks.splice(state.tasks.indexOf(task), 1)
+}
 
-  deleteTask (state, { task }) {
-    state.tasks.splice(state.tasks.indexOf(task), 1)
-  },
+export const editTask = (state, { task, newTask }) => {
+  task.title = newTask.title
+  task.title = newTask.description
+}
 
-  toggleTask (state, { task }) {
-    task.done = !task.done
-  },
-
-  editTask (state, { task, value }) {
-    task.title = value
-  },
-
-  clearCompleted (state) {
-    state.tasks = state.tasks.filter(task => !task.done)
-  }
+export const clearCompleted = (state) => {
+  state.tasks = state.tasks.filter(task => !task.done)
 }
