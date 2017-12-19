@@ -6,10 +6,11 @@ import * as mutations from './mutations'
 
 Vue.use(Vuex)
 
-const STORAGE_KEY = 'vu-todo-spa'
-
 export const state = {
-  tasks: JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]')
+  tasks: [
+    {id: 1, title: 'Sample1', description: 'desc...', done: false},
+    {id: 2, title: 'Sample2', description: 'desc...', done: true}
+  ]
 }
 
 const store = new Vuex.Store({

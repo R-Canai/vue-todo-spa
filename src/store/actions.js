@@ -2,13 +2,13 @@ export const addTask = ({ commit }, newTask) => {
   commit('addTask', newTask)
 }
 
-export const toggleTask = ({ commit }, task) => {
-  commit('toggleTask', task)
+export const toggleTask = ({ commit }, taskId) => {
+  commit('toggleTask', taskId)
 }
 
-export const deleteTask = ({ commit }, task) => {
+export const deleteTask = ({ commit }, taskId) => {
   if (confirm('Are you sure ?')) {
-    commit('deleteTask', task)
+    commit('deleteTask', taskId)
   }
 }
 

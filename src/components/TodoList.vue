@@ -1,7 +1,7 @@
 <template>
   <v-list two-line subheader>
-    <v-list-tile avatar v-for="task in tasks" v-bind:key="task.id" @click="">
-      <v-list-tile-avatar @click="toggleTask({task})">
+    <v-list-tile avatar v-for="task in tasks" v-bind:key="task.id">
+      <v-list-tile-avatar @click="toggleTask({taskId: task.id})">
         <v-icon
           v-if="task.done"
           class="light-green accent-3 white--text"

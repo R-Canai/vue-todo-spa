@@ -1,17 +1,15 @@
 export const addTask = (state, { newTask }) => {
-  state.tasks.push({
-    title: newTask.title,
-    description: newTask.description,
-    done: false
-  })
+  state.tasks.push(newTask)
 }
 
-export const toggleTask = (state, { task }) => {
+export const toggleTask = (state, { taskId }) => {
+  let task = state.tasks.find(task => { return task.id === taskId })
   task.done = !task.done
 }
 
-export const deleteTask = (state, { task }) => {
-  state.tasks.splice(state.tasks.indexOf(task), 1)
+export const deleteTask = (state, { taskId }) => {
+  let index = state.tasks.findIndex(task => { return task.id === taskId })
+  state.tasks.splice(index, 1)
 }
 
 export const editTask = (state, { task, newTask }) => {
