@@ -10,7 +10,7 @@
           <v-list-tile-title>Home</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
-      <v-list-tile @click="routePush('setting')">
+      <v-list-tile @click="routePush('/setting')">
         <v-list-tile-action>
           <v-icon>settings</v-icon>
         </v-list-tile-action>
@@ -28,7 +28,7 @@
     <router-view></router-view>
   </v-content>
   <v-footer color="indigo" app>
-    <span class="white--text">&copy; 2017</span>
+    <span class="white--text">&copy; 2017 rcanai</span>
   </v-footer>
 </v-app>
 </template>
