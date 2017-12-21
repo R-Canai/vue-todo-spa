@@ -15,5 +15,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class TaskViewSet(viewsets.ModelViewSet):
+  # TODO: Select my tasks only ...
   queryset = Task.objects.all()
   serializer_class = TaskSerializer
+  filter_fields = ('author', 'done')

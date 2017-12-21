@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'task',
     'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -125,5 +126,8 @@ STATIC_URL = '/static/'
 # REST API Setting
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 3
+    'PAGE_SIZE': 10,
+
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
+
 }
