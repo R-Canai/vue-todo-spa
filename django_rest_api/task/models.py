@@ -7,6 +7,13 @@ class User(models.Model):
   password = models.CharField(max_length=50)
   token = models.TextField()
 
+  # 'Object' => pk: User name
+  def __repr__(self):
+    return '{}: {}'.format(self.pk, self.name)
+
+  # set output str
+  __str__ = __repr__
+
 class Task(models.Model):
   title = models.CharField(max_length=250)
   description = models.TextField()
