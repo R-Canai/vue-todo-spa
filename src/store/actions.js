@@ -1,3 +1,19 @@
+import axios from 'axios'
+
+export const getAllTasks = ({ commit }) => {
+  axios.get('http://localhost:8000/api/tasks/', {
+    params: {
+      dummy: 'DUMMY'
+    }
+  })
+  .then(function (response) {
+    commit('setTasks', response.results)
+  })
+  .catch(function (error) {
+    console.log('error:', error)
+  })
+}
+
 export const addTask = ({ commit }, newTask) => {
   commit('addTask', newTask)
 }

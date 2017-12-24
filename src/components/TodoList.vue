@@ -46,6 +46,9 @@ export default {
       'toggleTask',
       'deleteTask'
     ])
+  },
+  created () {
+    this.$store.dispatch('getAllTasks')
   }
 }
 </script>
