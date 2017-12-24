@@ -29,4 +29,16 @@ npm run unit
 npm test
 ```
 
+## Django API
+
+### start
+
+$ python django_rest_api/manage.py runserver 0.0.0.0:8000 > /dev/null 2>&1 < /dev/null &
+
+### stop
+
+$ ps -ef|awk 'BEGIN{}{if(match($8, /python/))system("kill -9 " $2)}END{}'
+
+--
+
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
