@@ -1,7 +1,7 @@
 <template>
   <v-list two-line subheader>
     <v-list-tile avatar v-for="task in tasks" v-bind:key="task.id">
-      <v-list-tile-avatar @click="toggleTask({ taskId: task.id })">
+      <v-list-tile-avatar @click="toggleTask(task.id)">
         <v-icon
           v-if="task.done"
           class="light-green accent-3 white--text"
@@ -16,7 +16,7 @@
         <v-list-tile-sub-title>{{ task.description }}</v-list-tile-sub-title>
       </v-list-tile-content>
       <v-list-tile-action>
-        <v-btn icon ripple @click="deleteTask({ taskId: task.id })">
+        <v-btn icon ripple @click="deleteTask(task.id)">
           <v-icon color="grey lighten-1">delete</v-icon>
         </v-btn>
       </v-list-tile-action>

@@ -47,7 +47,7 @@ export default {
     addTask () {
       const newTask = this.task
       if (newTask.title.trim()) {
-        this.$store.dispatch('addTask', { newTask })
+        this.$store.dispatch('addTask', newTask)
       }
       this.task = {
         title: '',
