@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 export const getAllTasks = ({ commit }) => {
+  // GET == Select Action
   axios.get('http://localhost:8000/api/tasks/', {
     params: {
       dummy: 'DUMMY'
@@ -15,6 +16,7 @@ export const getAllTasks = ({ commit }) => {
 }
 
 export const addTask = ({ commit }, newTask) => {
+  // POST == Insert Action
   axios.post('http://localhost:8000/api/tasks/', {
     title: newTask.title,
     description: newTask.description,
@@ -29,13 +31,13 @@ export const addTask = ({ commit }, newTask) => {
   })
 }
 
-export const toggleTask = ({ commit }, taskId) => {
-  // TODO: toggle action...
-  axios.post('http://localhost:8000/api/tasks/', {
-    id: taskId
+export const toggleTask = ({ commit }, task) => {
+  // PATCH == Update Action
+  axios.patch(`http://localhost:8000/api/tasks/${task.id}/`, {
+    done: !task.done
   })
   .then(function (response) {
-    commit('addTask', response.data)
+    commit('toggleTask', response.data)
   })
   .catch(function (error) {
     console.log('error:', error)
@@ -43,11 +45,9 @@ export const toggleTask = ({ commit }, taskId) => {
 }
 
 export const deleteTask = ({ commit }, taskId) => {
-  // TODO: delete action...
   if (confirm('Are you sure ?')) {
-    axios.delete('http://localhost:8000/api/tasks/', {
-      id: taskId
-    })
+    // DELETE == Delete Action
+    axios.delete(`http://localhost:8000/api/tasks/${taskId}/`)
     .then(function (response) {
       commit('deleteTask', response.data.id)
     })

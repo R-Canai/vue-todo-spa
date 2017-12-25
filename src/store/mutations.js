@@ -6,9 +6,9 @@ export const addTask = (state, newTask) => {
   state.tasks.push(newTask)
 }
 
-export const toggleTask = (state, taskId) => {
-  let task = state.tasks.find(task => { return task.id === taskId })
-  task.done = !task.done
+export const toggleTask = (state, task) => {
+  let targetTask = state.tasks.find(t => { return t.id === task.id })
+  targetTask.done = task.done
 }
 
 export const deleteTask = (state, taskId) => {

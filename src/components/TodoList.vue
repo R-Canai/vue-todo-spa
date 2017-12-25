@@ -1,7 +1,7 @@
 <template>
   <v-list two-line subheader>
     <v-list-tile avatar v-for="task in tasks" v-bind:key="task.id">
-      <v-list-tile-avatar @click="toggleTask(task.id)">
+      <v-list-tile-avatar @click="toggleTask(task)">
         <v-icon
           v-if="task.done"
           class="light-green accent-3 white--text"
@@ -21,7 +21,6 @@
         </v-btn>
       </v-list-tile-action>
     </v-list-tile>
-    {{taskCount}}
   </v-list>
 </template>
 
@@ -37,8 +36,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'tasks',
-      'taskCount'
+      'tasks'
     ])
   },
   methods: {

@@ -2,6 +2,10 @@ export const tasks = state => {
   return state.tasks
 }
 
-export const taskCount = state => {
+export const allTaskCount = state => {
   return state.tasks.length
+}
+
+export const doneTaskCount = state => {
+  return state.tasks.filter(t => { return t.done }).length
 }
