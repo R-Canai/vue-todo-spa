@@ -11,7 +11,7 @@
           class="grey lighten-1 white--text"
           ></v-icon>
       </v-list-tile-avatar>
-      <v-list-tile-content>
+      <v-list-tile-content :class="{'text-done': task.done}">
         <v-list-tile-title>{{ task.title }}</v-list-tile-title>
         <v-list-tile-sub-title>{{ task.description }}</v-list-tile-sub-title>
       </v-list-tile-content>
@@ -28,7 +28,7 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'todo-list',
+  name: 'task-list',
   data () {
     return {
       dummy: ''
@@ -51,6 +51,11 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+.text-done {
+  div {
+    color: #CCC !important;
+    text-decoration: line-through !important;
+  }
+}
 </style>

@@ -1,9 +1,9 @@
 <template>
 <v-container>
   <h2 class="text-xs-right">
-    {{doneTaskCount}} / {{allTaskCount}}
+    {{ doneTaskCount }} / {{ allTaskCount }}
   </h2>
-  <todo-list></todo-list>
+  <task-list></task-list>
   <dialog-task ref="dialogTask"></dialog-task>
   <v-btn fab dark fixed bottom right color="pink" @click="openDialog">
     <v-icon>add</v-icon>
@@ -14,13 +14,13 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import TodoList from './TodoList'
+import TaskList from './TaskList'
 import DialogTask from './DialogTask'
 
 export default {
   name: 'home',
   components: {
-    TodoList,
+    TaskList,
     DialogTask
   },
   computed: {
