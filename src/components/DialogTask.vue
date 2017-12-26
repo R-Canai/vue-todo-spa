@@ -3,21 +3,20 @@
   <v-card>
     <v-card-title class="headline">Add / Edit</v-card-title>
     <v-card-text>
-       <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs12 sm12 md12>
-                <v-text-field label="Title" v-model="task.title" required></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm12 md12>
-                <v-text-field
-                  name="input-7-1"
-                  label="Description"
-                  v-model="task.description"
-                  multi-line
-                ></v-text-field>
-              </v-flex>
-            </v-layout>
-          </v-container>
+      <v-container grid-list-md>
+        <v-layout wrap>
+          <v-flex xs12>
+            <v-text-field label="Title" v-model="task.title" required></v-text-field>
+          </v-flex>
+          <v-flex xs12>
+            <v-text-field
+              label="Description"
+              v-model="task.description"
+              multi-line
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+      </v-container>
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>

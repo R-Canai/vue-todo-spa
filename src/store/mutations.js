@@ -2,6 +2,10 @@ export const setTasks = (state, tasks) => {
   state.tasks = tasks
 }
 
+export const setTask = (state, task) => {
+  state.task = task
+}
+
 export const addTask = (state, newTask) => {
   state.tasks.push(newTask)
 }

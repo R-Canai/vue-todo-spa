@@ -7,7 +7,8 @@ import * as mutations from './mutations'
 Vue.use(Vuex)
 
 export const state = {
-  tasks: []
+  tasks: [],
+  task: {}
 }
 
 const store = new Vuex.Store({

@@ -16,7 +16,7 @@ class User(models.Model):
 
 class Task(models.Model):
   title = models.CharField(max_length=250)
-  description = models.TextField()
+  description = models.TextField(blank=True)
   done = models.BooleanField(
     default = False, null = False
   )

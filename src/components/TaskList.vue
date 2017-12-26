@@ -5,18 +5,20 @@
         <v-icon
           v-if="task.done"
           class="light-green accent-3 white--text"
+          title="Completed !"
           >done</v-icon>
         <v-icon
           v-else
           class="grey lighten-1 white--text"
-          ></v-icon>
+          title="Incomplete"
+          >done</v-icon>
       </v-list-tile-avatar>
-      <v-list-tile-content :class="{'text-done': task.done}">
-        <v-list-tile-title>{{ task.title }}</v-list-tile-title>
+      <v-list-tile-content :class="{'task-done': task.done}">
+        <v-list-tile-title class="task-title" @click="openEdit(task.id)">{{ task.title }}</v-list-tile-title>
         <v-list-tile-sub-title>{{ task.description }}</v-list-tile-sub-title>
       </v-list-tile-content>
       <v-list-tile-action>
-        <v-btn icon ripple @click="deleteTask(task.id)">
+        <v-btn icon ripple title="Delete" @click="deleteTask(task.id)">
           <v-icon color="grey lighten-1">delete</v-icon>
         </v-btn>
       </v-list-tile-action>
@@ -43,7 +45,10 @@ export default {
     ...mapActions([
       'toggleTask',
       'deleteTask'
-    ])
+    ]),
+    openEdit (taskId) {
+      this.$router.push(`/task/${taskId}`)
+    }
   },
   created () {
     this.$store.dispatch('getAllTasks')
@@ -52,10 +57,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.text-done {
+.task-done {
   div {
     color: #CCC !important;
     text-decoration: line-through !important;
+  }
+}
+
+.task-title {
+  cursor: pointer;
+}
+
+.avatar {
+  i {
+    cursor: pointer;
   }
 }
 </style>
