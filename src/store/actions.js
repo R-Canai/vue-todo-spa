@@ -27,18 +27,22 @@ export const getTask = ({ commit }, taskId) => {
 }
 
 export const addTask = ({ commit }, newTask) => {
-  // POST == Insert Action
-  axios.post('/tasks/', {
-    title: newTask.title,
-    description: newTask.description,
-    done: false,
-    author: 1
-  })
-  .then(response => {
-    commit('addTask', response.data)
-  })
-  .catch(error => {
-    console.log('error:', error)
+  return new Promise((resolve, reject) => {
+    // POST == Insert Action
+    axios.post('/tasks/', {
+      title: newTask.title,
+      description: newTask.description,
+      done: false,
+      author: 1
+    })
+    .then(response => {
+      commit('addTask', response.data)
+      resolve(response)
+    })
+    .catch(error => {
+      console.log('error:', error)
+      reject(error)
+    })
   })
 }
 
