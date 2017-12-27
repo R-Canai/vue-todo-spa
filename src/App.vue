@@ -23,6 +23,8 @@
   <v-toolbar color="indigo" dark fixed app>
     <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
     <v-toolbar-title>vue-todo-spa</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-btn outline dark @click="logout()">Logout</v-btn>
   </v-toolbar>
   <v-content>
     <router-view></router-view>
@@ -34,6 +36,8 @@
 </template>
 
 <script>
+import { authTokenKey } from './constant'
+
 export default {
   name: 'app',
   data () {
@@ -44,6 +48,12 @@ export default {
   methods: {
     routePush (route) {
       this.$router.push(route)
+    },
+    logout () {
+      // TODO: delete server token
+      if (!confirm('Are you sure ?')) return false
+      localStorage.removeItem(authTokenKey)
+      this.$router.replace('/login')
     }
   }
 }
