@@ -1,21 +1,37 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
-# Create your models here.
-class User(models.Model):
-  name = models.CharField(max_length=50)
-  mail = models.EmailField()
-  password = models.CharField(max_length=50)
-  token = models.TextField()
+class UserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError('Users must have a email address')
+        email = RacchaiUserManager.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
-  REQUIRED_FIELDS = ('user',)
-  USERNAME_FIELD = ('name',)
+    def create_superuser(self, email, password):
+        return self.create_user(email, password)
 
-  # 'Object' => pk: User name
-  def __repr__(self):
-    return '{}: {}'.format(self.pk, self.name)
+class User(AbstractBaseUser):
+    email = models.EmailField(max_length=128, unique=True)
+    description = models.TextField(blank=True)
 
-  # set output str
-  __str__ = __repr__
+    USERNAME_FIELD = 'email'
+
+    objects = UserManager()
+
+    # 'Object' => pk: User name
+    def __repr__(self):
+      return '{}: {}'.format(self.pk, self.name)
+
+    # set output str
+    __str__ = __repr__
+
+    class Meta:
+        db_table = 'user'
+        swappable = 'AUTH_USER_MODEL'
 
 class Task(models.Model):
   title = models.CharField(max_length=250)
