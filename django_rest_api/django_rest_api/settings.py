@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'task',
     'rest_framework',
     'django_filters',
+    'rest_framework_jwt',
     'corsheaders',
 ]
 
@@ -129,12 +130,29 @@ STATIC_URL = '/static/'
 
 # REST API Setting
 REST_FRAMEWORK = {
+    # JWT Auth
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+    # Pagination
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10,
-
+    # filter
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
 
 }
+
+# JWT Auth settings
+JWT_AUTH = {
+    # none limit
+    'JWT_VERIFY_EXPIRATION': False,
+}
+
+# Change auth Model
+AUTH_USER_MODEL = 'task.User'
 
 # django-cors-headers
 CORS_ORIGIN_WHITELIST = (

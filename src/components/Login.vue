@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import axios from '../http'
 import { authTokenKey } from '../constant'
 
 export default {
@@ -42,8 +43,18 @@ export default {
       if (!this.email.trim() || this.password === '') {
         return false
       }
-      localStorage.setItem(authTokenKey, 1)
-      this.$router.replace(`/`)
+      axios.post('/auth-user/', {
+        email: this.email,
+        password: this.password
+      })
+      .then(response => {
+        console.log('response:', response)
+      })
+      .catch(error => {
+        console.log('error:', authTokenKey, error)
+      })
+      // localStorage.setItem(authTokenKey, 1)
+      // this.$router.replace(`/`)
     }
   }
 }

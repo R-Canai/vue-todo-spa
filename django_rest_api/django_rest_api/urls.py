@@ -17,10 +17,14 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from rest_framework_jwt.views import obtain_jwt_token
+
 from task.urls import router as task_router
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    url(r'^api/auth-user/', obtain_jwt_token),
 
     url(r'^api/', include(task_router.urls)),
 ]

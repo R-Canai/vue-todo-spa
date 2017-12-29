@@ -47,6 +47,7 @@ export default {
       'deleteTask'
     ]),
     openEdit (taskId) {
+      this.$store.state.task = {}
       this.$router.push(`/task/${taskId}`)
     }
   },

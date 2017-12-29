@@ -1,3 +1,7 @@
+export const setLoading = (state, loading) => {
+  state.loading = loading
+}
+
 export const setTasks = (state, tasks) => {
   state.tasks = tasks
 }

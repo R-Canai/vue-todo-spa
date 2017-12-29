@@ -7,6 +7,9 @@ class User(models.Model):
   password = models.CharField(max_length=50)
   token = models.TextField()
 
+  REQUIRED_FIELDS = ('user',)
+  USERNAME_FIELD = ('name',)
+
   # 'Object' => pk: User name
   def __repr__(self):
     return '{}: {}'.format(self.pk, self.name)

@@ -67,6 +67,7 @@ export const updateTask = ({ commit }, task) => {
 }
 
 export const toggleTask = ({ commit }, task) => {
+  commit('setLoading', true)
   // PATCH == Partial update Action
   axios.patch(`/tasks/${task.id}/`, {
     done: !task.done
@@ -77,10 +78,14 @@ export const toggleTask = ({ commit }, task) => {
   .catch(error => {
     console.log('error:', error)
   })
+  .then(() => {
+    commit('setLoading', false)
+  })
 }
 
 export const deleteTask = ({ commit }, taskId) => {
   if (!confirm('Are you sure ?')) return false
+  commit('setLoading', true)
   // DELETE == Destroy Action
   axios.delete(`/tasks/${taskId}/`)
   .then(response => {
@@ -88,5 +93,8 @@ export const deleteTask = ({ commit }, taskId) => {
   })
   .catch(error => {
     console.log('error:', error)
+  })
+  .then(() => {
+    commit('setLoading', false)
   })
 }

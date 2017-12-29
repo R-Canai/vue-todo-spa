@@ -7,6 +7,7 @@ import * as mutations from './mutations'
 Vue.use(Vuex)
 
 export const state = {
+  loading: false,
   tasks: [],
   task: {}
 }

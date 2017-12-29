@@ -27,6 +27,7 @@
     <v-btn outline dark @click="logout()">Logout</v-btn>
   </v-toolbar>
   <v-content>
+    <v-progress-linear :class="{'v-hidden': !loading}" :indeterminate="true"></v-progress-linear>
     <router-view></router-view>
   </v-content>
   <v-footer color="indigo" app>
@@ -37,6 +38,7 @@
 
 <script>
 import { authTokenKey } from './constant'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'app',
@@ -44,6 +46,11 @@ export default {
     return {
       drawer: null
     }
+  },
+  computed: {
+    ...mapGetters([
+      'loading'
+    ])
   },
   methods: {
     routePush (route) {
@@ -61,4 +68,12 @@ export default {
 
 <style lang="scss">
 @import "vuetify/dist/vuetify.min.css";
+
+.progress-linear {
+  margin: 0px;
+}
+
+.v-hidden {
+  visibility: hidden;
+}
 </style>

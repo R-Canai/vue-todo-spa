@@ -1,3 +1,7 @@
+export const loading = state => {
+  return state.loading
+}
+
 export const tasks = state => {
   return state.tasks
 }

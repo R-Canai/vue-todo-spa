@@ -1,7 +1,7 @@
 <template>
 <v-dialog v-model="dialog" max-width="500px">
   <v-card>
-    <v-card-title class="headline">Add / Edit</v-card-title>
+    <v-card-title class="headline">Add Task</v-card-title>
     <v-card-text>
       <v-container grid-list-md>
         <v-layout wrap>
@@ -13,6 +13,7 @@
               label="Description"
               v-model="task.description"
               multi-line
+              rows="3"
             ></v-text-field>
           </v-flex>
         </v-layout>
