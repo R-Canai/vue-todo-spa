@@ -1,4 +1,4 @@
-import axios from './http'
+import axios from '../http'
 
 export const getAllTasks = ({ commit }) => {
   // GET == Select Action
