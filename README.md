@@ -31,6 +31,10 @@ npm test
 
 ## Django API
 
+### setup
+
+[django_api](https://github.com/rcanai/vue-todo-spa/tree/master/django_api)
+
 ### start
 
 $ python django_api/manage.py runserver 0.0.0.0:8000 > /dev/null 2>&1 < /dev/null &
