@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'task',
+    'rest_framework',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -123,3 +124,12 @@ STATIC_URL = '/static/'
 
 # Auth Model
 AUTH_USER_MODEL = 'task.User'
+
+# REST framework settings
+REST_FRAMEWORK = {
+    # filter
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
+    # Pagination
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+}
