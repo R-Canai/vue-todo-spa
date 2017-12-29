@@ -1,15 +1,11 @@
 import axios from 'axios'
+import { authTokenKey } from './constant'
 
 export default axios.create({
   baseURL: 'http://localhost:8000/api',
   timeout: 5000,
   headers: {
-    common: {
-      'Authorization': ''
-    },
-    post: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-
+    'X-Requested-With': 'XMLHttpRequest',
+    'Authorization': `JWT ${localStorage.getItem(authTokenKey)}`
   }
 })

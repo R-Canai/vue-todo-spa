@@ -34,7 +34,7 @@ export default {
   data () {
     return {
       dialog: true,
-      email: 'example@example.com',
+      email: 'first@example.com',
       password: ''
     }
   },
@@ -48,13 +48,13 @@ export default {
         password: this.password
       })
       .then(response => {
-        console.log('response:', response)
+        axios.defaults.headers['Authorization'] = `JWT ${response.data.token}`
+        localStorage.setItem(authTokenKey, response.data.token)
+        this.$router.replace(`/`)
       })
       .catch(error => {
-        console.log('error:', authTokenKey, error)
+        console.log('error:', error)
       })
-      // localStorage.setItem(authTokenKey, 1)
-      // this.$router.replace(`/`)
     }
   }
 }

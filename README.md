@@ -33,7 +33,7 @@ npm test
 
 ### start
 
-$ python django_rest_api/manage.py runserver 0.0.0.0:8000 > /dev/null 2>&1 < /dev/null &
+$ python django_api/manage.py runserver 0.0.0.0:8000 > /dev/null 2>&1 < /dev/null &
 
 ### stop
 
