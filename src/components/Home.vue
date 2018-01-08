@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     openDialog () {
-      this.$refs.dialogTask.dialog = true
+      this.$refs.dialogTask.openDialog()
     }
   }
 }

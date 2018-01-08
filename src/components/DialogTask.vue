@@ -37,23 +37,30 @@ export default {
       task: {
         title: '',
         description: ''
-      }
+      },
+      errors: []
     }
   },
   methods: {
+    openDialog () {
+      this.dialog = true
+    },
     closeDialog () {
       this.dialog = false
     },
     addTask () {
-      const newTask = this.task
-      if (newTask.title.trim()) {
-        this.$store.dispatch('addTask', newTask)
-      }
-      this.task = {
-        title: '',
-        description: ''
-      }
-      this.closeDialog()
+      if (!this.task.title.trim()) return false
+      this.$store.dispatch('addTask', this.task)
+      .then(response => {
+        this.task = {
+          title: '',
+          description: ''
+        }
+        this.closeDialog()
+      })
+      .catch(reason => {
+        this.errors = reason.response.data
+      })
     }
   }
 }

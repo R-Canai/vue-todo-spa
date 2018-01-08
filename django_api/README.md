@@ -17,3 +17,7 @@
 Email: first@example.com
 Password: pswd1234
 
+### Guest1
+Email: second@example.com
+Password: pswd1234
+
