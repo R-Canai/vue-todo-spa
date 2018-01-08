@@ -36,6 +36,7 @@ const actions = {
     })
   },
   getTask ({ commit }, taskId) {
+    commit('setLoading', true)
     // GET == Select Action
     axios.get(`/tasks/${taskId}/`)
     .then(response => {
@@ -43,6 +44,9 @@ const actions = {
     })
     .catch(error => {
       console.log('error:', error)
+    })
+    .then(() => {
+      commit('setLoading', false)
     })
   },
   addTask ({ commit }, newTask) {
