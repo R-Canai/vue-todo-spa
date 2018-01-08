@@ -43,7 +43,7 @@ export default {
       if (!this.email.trim() || this.password === '') {
         return false
       }
-      axios.post('/auth-user/', {
+      axios.post('/token-auth/', {
         email: this.email,
         password: this.password
       })
