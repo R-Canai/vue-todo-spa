@@ -29,7 +29,7 @@ const actions = {
       }
     })
     .then(response => {
-      commit('setTasks', response.data.results)
+      commit('setTasks', response.data)
     })
     .catch(error => {
       console.log('error:', error)
@@ -55,9 +55,7 @@ const actions = {
       // POST == Insert Action
       axios.post('/tasks/', {
         title: newTask.title,
-        description: newTask.description,
-        done: false,
-        author: 1
+        description: newTask.description
       })
       .then(response => {
         commit('addTask', response.data)
@@ -75,9 +73,8 @@ const actions = {
   updateTask ({ commit }, task) {
     commit('setLoading', true)
     return new Promise((resolve, reject) => {
-      // PATCH == Partial update Action
-      // TODO: You should use PUT here. But userID is required
-      axios.patch(`/tasks/${task.id}/`, {
+      // PUT == Update Action
+      axios.put(`/tasks/${task.id}/`, {
         title: task.title,
         description: task.description,
         done: task.done,
@@ -99,9 +96,7 @@ const actions = {
   toggleTask ({ commit }, task) {
     commit('setLoading', true)
     // PATCH == Partial update Action
-    axios.patch(`/tasks/${task.id}/`, {
-      done: !task.done
-    })
+    axios.patch(`/tasks/${task.id}/toggle/`)
     .then(response => {
       commit('toggleTask', response.data)
     })

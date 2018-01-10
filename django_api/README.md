@@ -14,19 +14,21 @@ djangorestframework-jwt 1.11.0
 
 1. python manage.py makemigrations
 2. python manage.py migrate
-3. python manage.py runserver 0.0.0.0:8080
+3. python manage.py runserver 0.0.0.0:8000
 
-> http://localhost:8080/  
-> http://localhost:8080/admin/
+> http://localhost:8000/  
+> http://localhost:8000/admin/
 
 
-## Users
+## Users Sample
 
 ### Admin
+Name: First
 Email: first@example.com
 Password: pswd1234
 
 ### Guest1
+Name: Second
 Email: second@example.com
 Password: pswd1234
 
