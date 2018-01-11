@@ -1,6 +1,36 @@
-from rest_framework import views, response, permissions, status
-from .models import Task
-from .serializer import TaskSerializer
+from rest_framework import views, response, permissions, status, generics
+from django.db import transaction
+from .models import Task, User
+from .serializer import TaskSerializer, UserSerializer
+
+
+class UserRegister(generics.CreateAPIView):
+    permission_classes = (permissions.AllowAny,)
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    @transaction.atomic
+    def post(self, request, format=None):
+        serializer = UserSerializer(data=request.data)
+        if not request.data['password'] == request.data['password_confirm']:
+            errors = {'password_confirm': ['passwords do not match']}
+            return response.Response(errors, status=status.HTTP_400_BAD_REQUEST)
+        if serializer.is_valid():
+            serializer.save()
+            return response.Response(serializer.data, status=status.HTTP_201_CREATED)
+        return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserGetView(generics.RetrieveAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def get(self, request, format=None):
+        return response.Response(data={
+            'username': request.user.username,
+            'email': request.user.email,
+            },
+            status=status.HTTP_200_OK)
 
 class TasksView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
@@ -55,7 +85,7 @@ class TasksView(views.APIView):
             return response.Response(status=status.HTTP_400_BAD_REQUEST)
         tasks = Task.objects.filter(id=task_id, user=request.user.id)
         tasks.delete()
-        data = {'id': int(task_id)}
+        data = {'id': int(task_id),}
         return response.Response(data, status=status.HTTP_200_OK)
 
 class TasksToggleView(views.APIView):
@@ -68,5 +98,5 @@ class TasksToggleView(views.APIView):
         task = Task.objects.get(id=task_id, user=request.user.id)
         task.done = not task.done
         task.save()
-        data = {'id': task.id, 'done': task.done}
+        data = {'id': task.id, 'done': task.done,}
         return response.Response(data, status=status.HTTP_200_OK)

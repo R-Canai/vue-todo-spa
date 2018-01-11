@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
 import Task from '@/components/Task'
+import User from '@/components/User'
 
 import { authTokenKey } from '../constant'
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/user',
+      name: 'User',
+      component: User
     },
     {
       path: '/',

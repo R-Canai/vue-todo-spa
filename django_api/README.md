@@ -18,17 +18,3 @@ djangorestframework-jwt 1.11.0
 
 > http://localhost:8000/  
 > http://localhost:8000/admin/
-
-
-## Users Sample
-
-### Admin
-Name: First
-Email: first@example.com
-Password: pswd1234
-
-### Guest1
-Name: Second
-Email: second@example.com
-Password: pswd1234
-

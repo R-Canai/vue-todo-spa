@@ -22,6 +22,7 @@
       </v-flex>
     </v-layout>
     <div class="text-xs-center">
+      <v-btn round large @click="updateTask()">Cancel</v-btn>
       <v-btn round large color="pink" dark @click="updateTask()">Update</v-btn>
     </div>
   </v-container>
@@ -48,11 +49,14 @@ export default {
     updateTask () {
       this.$store.dispatch('updateTask', this.task)
       .then(response => {
-        this.$router.replace(`/`)
+        this.$router.replace('/')
       })
       .catch(reason => {
         this.errors = reason.response.data
       })
+    },
+    goHome () {
+      this.$router.push('/')
     }
   },
   created () {
@@ -61,6 +65,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 </style>

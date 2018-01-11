@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import axios from './http'
 import { authTokenKey } from './constant'
 import { mapGetters } from 'vuex'
 
@@ -60,6 +61,7 @@ export default {
       // TODO: delete server token
       if (!confirm('Are you sure ?')) return false
       localStorage.removeItem(authTokenKey)
+      axios.defaults.headers['Authorization'] = ''
       this.$router.replace('/login')
     }
   }
