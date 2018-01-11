@@ -29,7 +29,8 @@ urlpatterns = [
     url(r'^api/token-verify/$', verify_jwt_token),
 
     # User endpoint
-    url(r'^api/user/register/$', views.UserRegister.as_view()),
+    url(r'^api/user/register/$', views.UserRegisterView.as_view()),
+    url(r'^api/user/update/$', views.UserUpdateView.as_view()),
     url(r'^api/user/$', views.UserGetView.as_view()),
 
     # Tasks endpoint

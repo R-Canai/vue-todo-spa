@@ -1,13 +1,7 @@
 import axios from '../../http'
 
 const state = {
-  user: {
-    id: '',
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirm: ''
-  }
+  user: {}
 }
 
 const getters = {
@@ -17,7 +11,7 @@ const getters = {
 }
 
 const actions = {
-  createUser ({ commit }, user) {
+  registerUser ({ commit }, user) {
     commit('setLoading', true)
     return new Promise((resolve, reject) => {
       axios.post(`/user/register/`, {
@@ -25,6 +19,25 @@ const actions = {
         email: user.email,
         password: user.password,
         password_confirm: user.passwordConfirm
+      })
+      .then(response => {
+        resolve(response)
+      })
+      .catch((error) => {
+        console.log('error:', error)
+        reject(error)
+      })
+      .then(() => {
+        commit('setLoading', false)
+      })
+    })
+  },
+  updateUser ({ commit }, user) {
+    commit('setLoading', true)
+    return new Promise((resolve, reject) => {
+      axios.put(`/user/update/`, {
+        username: user.username,
+        email: user.email
       })
       .then(response => {
         commit('setUser', response.data)
@@ -37,6 +50,19 @@ const actions = {
       .then(() => {
         commit('setLoading', false)
       })
+    })
+  },
+  getUser ({ commit }) {
+    commit('setLoading', true)
+    axios.get(`/user/`)
+    .then(response => {
+      commit('setUser', response.data)
+    })
+    .catch(error => {
+      console.log('error:', error)
+    })
+    .then(() => {
+      commit('setLoading', false)
     })
   }
 }

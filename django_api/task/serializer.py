@@ -12,6 +12,14 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return User.objects.create_user(request_data=validated_data)
 
+    def update(self, instance, validated_data):
+        if 'password' in validated_data:
+            instance.set_password(validated_data['password'])
+        else:
+            instance = super().update(instance, validated_data)
+        instance.save()
+        return instance
+
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task

@@ -4,7 +4,7 @@ from .models import Task, User
 from .serializer import TaskSerializer, UserSerializer
 
 
-class UserRegister(generics.CreateAPIView):
+class UserRegisterView(generics.CreateAPIView):
     permission_classes = (permissions.AllowAny,)
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -19,6 +19,18 @@ class UserRegister(generics.CreateAPIView):
             serializer.save()
             return response.Response(serializer.data, status=status.HTTP_201_CREATED)
         return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserUpdateView(generics.UpdateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+    def get_object(self):
+        try:
+            instance = self.queryset.get(email=self.request.user)
+            return instance
+        except User.DoesNotExist:
+            raise Http404
 
 class UserGetView(generics.RetrieveAPIView):
     permission_classes = (permissions.IsAuthenticated,)
